@@ -5,11 +5,12 @@ cache: pip
 # Supported CPython versions:
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python:
- - 2.7
+ - 3.7
  - 3.6
  - 3.5
  - 3.4
  - 3.3
+ - 2.7
 
 install:
  - pip install -r requirements.txt
