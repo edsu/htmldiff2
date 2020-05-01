@@ -4,7 +4,7 @@ htmldiff2 is a library that uses difflib and genshi to diff arbitrary fragments
 of HTML inline.
 
 ```python
->>> from htmldiff import render_html_diff
+>>> from htmldiff2 import render_html_diff
 >>> render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz')
 u'<div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>'
 >>> render_html_diff('Foo bar baz', 'Foo baz')
