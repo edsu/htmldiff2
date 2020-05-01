@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    htmldiff
+    htmldiff2
     ~~~~~~~~
 
     Diffs HTML fragments.  Nice to show what changed between two revisions
     of a document for an arbitrary user.  Examples:
 
-    >>> from htmldiff import render_html_diff
+    >>> from htmldiff2 import render_html_diff
 
     >>> print(render_html_diff('Foo <b>bar</b> baz', 'Foo <i>bar</i> baz'))
     <div class="diff">Foo <i class="tagdiff_replaced">bar</i> baz</div>

@@ -1,4 +1,4 @@
 import doctest
-import htmldiff
+import htmldiff2
 
-doctest.testmod(htmldiff, verbose=True)
+doctest.testmod(htmldiff2, verbose=True)

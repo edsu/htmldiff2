@@ -5,12 +5,12 @@ except ImportError:
 
 
 setup(
-    name='htmldiff',
-    author='Armin Ronacher',
-    author_email='armin.ronacher@active-4.com',
-    version='0.2',
-    url='http://github.com/mitsuhiko/htmldiff',
-    py_modules=['htmldiff'],
+    name='htmldiff2',
+    author='Ed Summers',
+    author_email='ehs@pobox.com',
+    version='0.1',
+    url='http://github.com/edsu/htmldiff2',
+    py_modules=['htmldiff2'],
     description='Diffs arbitrary HTML inline.',
     zip_safe=False,
     install_requires=['genshi', "html5lib"],
