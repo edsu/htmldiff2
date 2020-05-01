@@ -8,3 +8,4 @@ dist
 # Coverage
 .coverage
 htmlcov
+Pipfile*
