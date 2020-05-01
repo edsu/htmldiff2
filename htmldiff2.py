@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     htmldiff2
     ~~~~~~~~
@@ -20,7 +19,6 @@
     :copyright: (c) 2011 by Armin Ronacher, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import with_statement
 
 import re
 from difflib import SequenceMatcher
@@ -76,7 +74,7 @@ def longzip(a, b):
             yield None, item2
 
 
-class StreamDiffer(object):
+class StreamDiffer:
     """A class that can diff a stream of Genshi events. It will inject
 ``<ins>`` and ``<del>`` tags into the stream. It probably breaks
 in very ugly ways if you pass a random Genshi stream to it. I'm
@@ -110,13 +108,13 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
         self._result.append((type, data, pos))
 
     def text_split(self, text):
-        worditer = chain([u''], _diff_split_re.split(text))
+        worditer = chain([''], _diff_split_re.split(text))
         return [x + next(worditer) for x in worditer]
 
     def cut_leading_space(self, s):
         match = _leading_space_re.match(s)
         if match is None:
-            return u'', s
+            return '', s
         return match.group(), s[match.end():]
 
     def mark_text(self, pos, text, tag):
@@ -134,7 +132,7 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
         matcher = SequenceMatcher(None, old, new)
 
         def wrap(tag, words):
-            return self.mark_text(pos, u''.join(words), tag)
+            return self.mark_text(pos, ''.join(words), tag)
 
         for tag, i1, i2, j1, j2 in matcher.get_opcodes():
             if tag == 'replace':
@@ -145,7 +143,7 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
             elif tag == 'insert':
                 wrap('ins', new[j1:j2])
             else:
-                self.append(TEXT, u''.join(old[i1:i2]), pos)
+                self.append(TEXT, ''.join(old[i1:i2]), pos)
 
     def replace(self, old_start, old_end, new_start, new_end):
         old = self._old[old_start:old_end]
