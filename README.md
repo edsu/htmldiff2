@@ -1,12 +1,10 @@
 # htmldiff2
 
 htmldiff2 is a library that uses [difflib], [genshi] and [html5lib] to diff
-arbitrary fragments of HTML inline.
-
-htmldiff2 is a friendly fork of Armin Ronacher's
-[htmldiff](https://github.com/mitsuhiko/htmldiff) which needed to be upgraded
-for the [diffengine](https://github.com/docnow/diffengine) project. See [this
-issue](https://github.com/mitsuhiko/htmldiff/issues/7) for context.
+arbitrary fragments of HTML inline. htmldiff2 is a friendly fork of Armin
+Ronacher's [htmldiff](https://github.com/mitsuhiko/htmldiff) which needed to be
+upgraded for the [diffengine](https://github.com/docnow/diffengine) project. See
+[this issue](https://github.com/mitsuhiko/htmldiff/issues/7) for context.
 
 ```python
 >>> from htmldiff2 import render_html_diff
