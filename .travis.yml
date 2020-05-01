@@ -5,6 +5,7 @@ cache: pip
 # Supported CPython versions:
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python:
+ - 3.8
  - 3.7
  - 3.6
  - 3.5
