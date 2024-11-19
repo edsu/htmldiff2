@@ -106,11 +106,12 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
         attrs |= [(QName('class'), cls and cls + ' ' + classname or classname)]
         return attrs
 
-    def inject_src(self, attrs, old_attrs):
-        src = attrs.get('src')
-        old_src = old_attrs.get('src')
-        attrs |= [(QName('src'), src)]
-        attrs |= [(QName('data-old-src'), old_src)]
+    def inject_refattr(self, attrs, old_attrs):
+        for attr in ['src', 'href']:
+            old_attr = old_attrs.get(attr)
+            new_attr = attrs.get(attr)
+            attrs |= [(QName(attr), new_attr)]
+            attrs |= [(QName('data-old-%s' % attr), old_attr)]
         return attrs
 
     def append(self, type, data, pos):
@@ -236,7 +237,7 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
 
     def enter_mark_replaced(self, pos, tag, attrs, old_attrs):
         attrs = self.inject_class(attrs, 'tagdiff_replaced')
-        attrs = self.inject_src(attrs, old_attrs)
+        attrs = self.inject_refattr(attrs, old_attrs)
         self._stack.append(tag)
         self.append(START, (tag, attrs), pos)
 
