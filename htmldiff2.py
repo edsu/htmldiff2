@@ -17,6 +17,9 @@
     >>> print(render_html_diff('Foo baz', 'Foo blah baz'))
     <div class="diff">Foo <ins>blah</ins> baz</div>
 
+    >>> print(render_html_diff('<img src="pic0.jpg"/>', '<img src="pic1.jpg"/>'))
+    <div class="diff"><img src="pic1.jpg" class="tagdiff_replaced" data-old-src="pic0.jpg"></div>
+
     :copyright: (c) 2011 by Armin Ronacher, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
