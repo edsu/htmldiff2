@@ -4,8 +4,11 @@ dist
 *.egg-info
 .cache
 .eggs
+.venv
+.python-version
 
 # Coverage
 .coverage
 htmlcov
 Pipfile*
+
