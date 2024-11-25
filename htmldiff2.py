@@ -17,6 +17,9 @@
     >>> print(render_html_diff('Foo baz', 'Foo blah baz'))
     <div class="diff">Foo <ins>blah</ins> baz</div>
 
+    >>> print(render_html_diff('<img src="pic0.jpg"/>', '<img src="pic1.jpg"/>'))
+    <div class="diff"><img src="pic1.jpg" class="tagdiff_replaced" data-old-src="pic0.jpg"></div>
+
     :copyright: (c) 2011 by Armin Ronacher, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
@@ -106,6 +109,14 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
         attrs |= [(QName('class'), cls and cls + ' ' + classname or classname)]
         return attrs
 
+    def inject_refattr(self, attrs, old_attrs):
+        for attr in ['src', 'href']:
+            old_attr = old_attrs.get(attr)
+            new_attr = attrs.get(attr)
+            attrs |= [(QName(attr), new_attr)]
+            attrs |= [(QName('data-old-%s' % attr), old_attr)]
+        return attrs
+
     def append(self, type, data, pos):
         self._result.append((type, data, pos))
 
@@ -166,8 +177,9 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
                 type = old_event[0]
                 # start tags are easy. handle them first.
                 if type == START:
+                    old_, (old_tag, old_attrs), old_pos = old_event
                     _, (tag, attrs), pos = new_event
-                    self.enter_mark_replaced(pos, tag, attrs)
+                    self.enter_mark_replaced(pos, tag, attrs, old_attrs)
                 # ends in replacements are a bit tricker, we try to
                 # leave the new one first, then the old one. One
                 # should succeed.
@@ -226,8 +238,9 @@ so the tags the `StreamDiffer` adds are also unnamespaced.
         self._stack.append(tag)
         self.append(START, (tag, attrs), pos)
 
-    def enter_mark_replaced(self, pos, tag, attrs):
+    def enter_mark_replaced(self, pos, tag, attrs, old_attrs):
         attrs = self.inject_class(attrs, 'tagdiff_replaced')
+        attrs = self.inject_refattr(attrs, old_attrs)
         self._stack.append(tag)
         self.append(START, (tag, attrs), pos)
 
