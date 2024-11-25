@@ -1,0 +1,12 @@
+[project]
+name = "htmldiff2"
+version = "0.2.1"
+description = "Diffs arbitrary HTML inline."
+readme = "README.md"
+requires-python = ">=2.7"
+license = {file = "LICENSE"}
+dependencies = ["genshi", "html5lib"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
