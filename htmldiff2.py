@@ -34,8 +34,8 @@ from contextlib import contextmanager
 import html5lib
 
 
-_leading_space_re = re.compile(r'^(\s+)(?u)')
-_diff_split_re = re.compile(r'(\s+)(?u)')
+_leading_space_re = re.compile(r'^(\s+)', re.U)
+_diff_split_re = re.compile(r'(\s+)', re.U)
 
 
 def diff_genshi_stream(old_stream, new_stream):
